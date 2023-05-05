@@ -1,0 +1,31 @@
+version: "3.3"
+services:
+  redis:
+    image: "bitnami/redis:latest"
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_REPLICATION_MODE=master
+      - REDIS_PASSWORD=pwd
+  redis-exporter:
+    image: oliver006/redis_exporter
+    ports:
+      - 9121:9121
+    environment:
+      REDIS_ADDR: "redis:6379"
+      REDIS_USER: null
+      REDIS_PASSWORD: pwd
+    links:
+      - redis
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus:/etc/prometheus:z
+    links:
+      - redis-exporter
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
