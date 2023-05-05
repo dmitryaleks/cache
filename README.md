@@ -61,10 +61,10 @@ Notes:
   - we mount the local "./prometheus" directory to the container's virtual "/etc/prometheus" so that Prometheus could pick up out local config file
   - when mapping the local filesystem to a container filesystem on Fedora Linux (or any SELinux) we need to add "z" (shared mount) option to avoid getting a file access permission problem
 
-## Graphana
+## Grafana
 
 Front-end to show the Redis dashboard. No explicit programmatic linkage with data source required at service definition time.
-Prometheus data source and dashboard definition are added via the Graphane GUI.
+Prometheus data source and dashboard definition are added via the Grafana GUI.
 
 ```
   grafana:
@@ -77,14 +77,14 @@ Note: default credentials out-of-the-box are admin/admin
 
 ## Dashboard definition
 
-[Graphana Dashboard for Redis Exporter](https://grafana.com/grafana/dashboards/763-redis-dashboard-for-prometheus-redis-exporter-1-x/)
+[Grafana Dashboard for Redis Exporter](https://grafana.com/grafana/dashboards/763-redis-dashboard-for-prometheus-redis-exporter-1-x/)
 
 ## Test load
 
 A trivial Python test script wrapped in a Bash script for a simulated multi-client test can be started as follows:
 
 ```
-./start_test_load.sh <number_of_client_processes> <event_rate_per_second> <load_duration>
+./start_test_load.sh <number_of_client_processes> <rate_events_per_second> <load_duration_sec>
 ```
 
 E.g.:
@@ -95,5 +95,5 @@ E.g.:
 
 ## Resulting view on the dashboard
 
-![Dashboard](https://raw.github.com/dmitryaleks/cache/master/dashboard/redis-dashboard-prometheus-graphana.png)
+![Dashboard](https://raw.github.com/dmitryaleks/cache/master/dashboard/redis-dashboard-prometheus-grafana.png)
 

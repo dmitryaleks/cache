@@ -1,3 +1,3 @@
 #!/bin/bash
-# Starts Redis, Redis Exporter, Prometheus, Graphana
+# Starts Redis, Redis Exporter, Prometheus, Grafana
 docker-compose up
